@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import re
+import subprocess
 import xml.etree.ElementTree as ET
 
 # Configure logging
@@ -82,11 +83,18 @@ def main():
     # print(test_methods)
 
 
+def run_cmd(cmd: str):
+    proc = subprocess.Popen(cmd, shell=True)
+    code = proc.wait()
+    assert code == 0
+
+
 # TODO: run papare mvn commands
-def prompt():
-    logging.info("need to run `mvn surefire-report:report` at first")
+def prepare_maven():
+    run_cmd("mvn surefire-report:report -Drat.skip=true")
+    logging.info("run `mvn surefire-report:report` at first")
 
 
 if __name__ == "__main__":
-    prompt()
+    prepare_maven()
     main()

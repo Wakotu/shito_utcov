@@ -82,6 +82,7 @@ def main():
     # print(test_methods)
 
 
+# TODO: run papare mvn commands
 def prompt():
     logging.info("need to run `mvn surefire-report:report` at first")
 

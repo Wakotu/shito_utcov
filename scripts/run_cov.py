@@ -376,11 +376,11 @@ def main():
                 logger.warning(f"running {ind+1} failed")
             else:
                 succ += 1
-                logger.info(f"running {ind + 1} succeeded")
+                logger.info(f"running {ind + 1} succeeded, succeeded: {succ}/{ind+1}")
             print()
             if debug:
                 break
-        logger.info(f"{succ} cases succeed among {len(test_method)} tries.")
+        logger.info(f"success totally: {succ}/{len(test_methods)}")
 
 
 if __name__ == "__main__":

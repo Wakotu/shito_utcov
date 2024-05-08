@@ -178,18 +178,24 @@ def get_err_log_name(test_method: str) -> str:
     return os.path.join(cmd_err_dir, test_method + ".log")
 
 
-def run_ut(test_method: str, full_path: str) -> bool:
+def run_ut(test_method: str, full_path: str, single: bool) -> bool:
     global debug, try_mode
     # if debug:
     #     __import__("ipdb").set_trace()
     # note that the jacoco.skip=false was special extra options for shiro due to its customized project settings
     err_log = get_err_log_name(test_method)
 
-    module = get_module(full_path)
-    if len(module) == 0:
-        return False
-    cmd = f"mvn -pl {module} -am clean test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest={test_method}"
+    # construct cmd within different mode
+    if single:
+        module = get_module(full_path)
+        if len(module) == 0:
+            return False
+        cmd = f"mvn -pl {module} -am clean test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest={test_method}"
+    else:
+        cmd = f"mvn clean test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest={test_method}"
+
     logger.info(f"command: {cmd}")
+
     if debug or try_mode:
         proc = subprocess.run(cmd.split(), text=True, capture_output=True)
     else:
@@ -291,7 +297,7 @@ def search_for_report_path(loc: Location, full_path: str) -> str:
         return ""
 
 
-def get_report(test_method: str) -> str:
+def get_report(test_method: str, single: bool) -> str:
     """
     get report xml  for corresponding UT, xml file resides in the corresponding subproject dir plus fixed target sub structure
     UT(method name) -> package -> sub project,
@@ -300,7 +306,7 @@ def get_report(test_method: str) -> str:
     global sub_projects
     loc = extract_method_name(test_method)
     full_path = get_full_path(loc)
-    flag = run_ut(test_method, full_path)
+    flag = run_ut(test_method, full_path, single)
     if not flag:
         return ""
     report_path = search_for_report_path(loc, full_path)
@@ -328,10 +334,12 @@ def run_and_collect_cov(test_method: str) -> bool:
     run and then collect data(path needed)
     """
     global sub_projects
-    report_path = get_report(test_method)
-    # failed
+    report_path = get_report(test_method, True)
     if len(report_path) == 0:
-        return False
+        report_path = get_report(test_method, False)
+        if len(report_path) == 0:
+            return False
+
     cov_records = extract_cov_report(report_path)
     logger.info(f"cov_record sample: {cov_records[0]}")
     rate = calculate_coverage(cov_records, METRIC)

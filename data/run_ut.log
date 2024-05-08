@@ -1,0 +1,1135 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Apache Shiro                                                       [pom]
+[INFO] Apache Shiro :: Lang                                            [bundle]
+[INFO] Apache Shiro :: Cryptography                                       [pom]
+[INFO] Apache Shiro :: Cryptography :: Core                            [bundle]
+[INFO] Apache Shiro :: Cryptography :: Hashing                         [bundle]
+[INFO] Apache Shiro :: Cryptography :: Ciphers                         [bundle]
+[INFO] Apache Shiro :: Cryptography :: Support                            [pom]
+[INFO] Apache Shiro :: Cryptography :: Support :: Argon2               [bundle]
+[INFO] Apache Shiro :: Cryptography :: Support :: BCrypt               [bundle]
+[INFO] Apache Shiro :: Event                                           [bundle]
+[INFO] Apache Shiro :: Cache                                           [bundle]
+[INFO] Apache Shiro :: Configuration                                      [pom]
+[INFO] Apache Shiro :: Configuration :: Core                           [bundle]
+[INFO] Apache Shiro :: Configuration :: OGDL                           [bundle]
+[INFO] Apache Shiro :: Core                                            [bundle]
+[INFO] Apache Shiro :: Web                                             [bundle]
+[INFO] 
+[INFO] --------------------< org.apache.shiro:shiro-root >---------------------
+[INFO] Building Apache Shiro 2.0.0                                       [1/16]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-root ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-root ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-root ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-root ---
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-root ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-root ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-root ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-root ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-root ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-root ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-root ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-root ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-root ---
+[INFO] No sources specified for stub generation. Skipping.
+[INFO] Generated 0 stubs.
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-root ---
+[INFO] No sources specified for compilation. Skipping.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-root ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-root ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --------------------< org.apache.shiro:shiro-lang >---------------------
+[INFO] Building Apache Shiro :: Lang 2.0.0                               [2/16]
+[INFO]   from lang/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-lang ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/lang/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-lang ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-lang ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-lang ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-lang ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-lang ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-lang ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-lang ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-lang ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-lang ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/lang/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/lang/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-lang ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-lang ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-lang ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-lang ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 32 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-lang ---
+[INFO] No sources specified for stub generation. Skipping.
+[INFO] Generated 0 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-lang ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/lang/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-lang ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-lang ---
+[INFO] No sources specified for compilation. Skipping.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-lang ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-lang ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-lang ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] -------------------< org.apache.shiro:shiro-crypto >--------------------
+[INFO] Building Apache Shiro :: Cryptography 2.0.0                       [3/16]
+[INFO]   from crypto/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-crypto ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-crypto ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-crypto ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-crypto ---
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-crypto ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-crypto ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-crypto ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-crypto ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-crypto ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-crypto ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-crypto ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-crypto ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-crypto ---
+[INFO] No sources specified for stub generation. Skipping.
+[INFO] Generated 0 stubs.
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-crypto ---
+[INFO] No sources specified for compilation. Skipping.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-crypto ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-crypto ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] -----------------< org.apache.shiro:shiro-crypto-core >-----------------
+[INFO] Building Apache Shiro :: Cryptography :: Core 2.0.0               [4/16]
+[INFO]   from crypto/core/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-crypto-core ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/core/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-crypto-core ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-crypto-core ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-crypto-core ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-crypto-core ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-crypto-core ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/core/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/core/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-crypto-core ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-crypto-core ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-crypto-core ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 5 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-crypto-core ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 1 stub.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-crypto-core ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/crypto/core/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-crypto-core ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-crypto-core ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 2 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-crypto-core ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-crypto-core ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] -----------------< org.apache.shiro:shiro-crypto-hash >-----------------
+[INFO] Building Apache Shiro :: Cryptography :: Hashing 2.0.0            [5/16]
+[INFO]   from crypto/hash/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-crypto-hash ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/hash/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-crypto-hash ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-crypto-hash ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-crypto-hash ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-crypto-hash ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-crypto-hash ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/hash/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/hash/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-crypto-hash ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-crypto-hash ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-crypto-hash ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 27 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-crypto-hash ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 8 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-crypto-hash ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/crypto/hash/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-crypto-hash ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 8 source files with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-crypto-hash ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 11 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-crypto-hash ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-crypto-hash ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] ----------------< org.apache.shiro:shiro-crypto-cipher >----------------
+[INFO] Building Apache Shiro :: Cryptography :: Ciphers 2.0.0            [6/16]
+[INFO]   from crypto/cipher/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-crypto-cipher ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/cipher/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-crypto-cipher ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-crypto-cipher ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-crypto-cipher ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-crypto-cipher ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-crypto-cipher ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/cipher/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/cipher/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-crypto-cipher ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-crypto-cipher ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-crypto-cipher ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 12 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-crypto-cipher ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 3 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-crypto-cipher ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/crypto/cipher/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-crypto-cipher ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 3 source files with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-crypto-cipher ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 7 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-crypto-cipher ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-crypto-cipher ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] ------------< org.apache.shiro.crypto:shiro-crypto-support >------------
+[INFO] Building Apache Shiro :: Cryptography :: Support 2.0.0            [7/16]
+[INFO]   from crypto/support/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-crypto-support ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/support/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-crypto-support ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-crypto-support ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-crypto-support ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-crypto-support ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/support/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/support/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-crypto-support ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-crypto-support ---
+[INFO] No sources specified for stub generation. Skipping.
+[INFO] Generated 0 stubs.
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-crypto-support ---
+[INFO] No sources specified for compilation. Skipping.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-crypto-support ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-crypto-support ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] ------------< org.apache.shiro.crypto:shiro-hashes-argon2 >-------------
+[INFO] Building Apache Shiro :: Cryptography :: Support :: Argon2 2.0.0  [8/16]
+[INFO]   from crypto/support/hashes/argon2/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-hashes-argon2 ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/argon2/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-hashes-argon2 ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-hashes-argon2 ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-hashes-argon2 ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-hashes-argon2 ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-hashes-argon2 ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/argon2/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/argon2/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-hashes-argon2 ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-hashes-argon2 ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-hashes-argon2 ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 4 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-hashes-argon2 ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 1 stub.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-hashes-argon2 ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/argon2/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-hashes-argon2 ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-hashes-argon2 ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 2 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-hashes-argon2 ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-hashes-argon2 ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] ------------< org.apache.shiro.crypto:shiro-hashes-bcrypt >-------------
+[INFO] Building Apache Shiro :: Cryptography :: Support :: BCrypt 2.0.0  [9/16]
+[INFO]   from crypto/support/hashes/bcrypt/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-hashes-bcrypt ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/bcrypt/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-hashes-bcrypt ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-hashes-bcrypt ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-hashes-bcrypt ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-hashes-bcrypt ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-hashes-bcrypt ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/bcrypt/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/bcrypt/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-hashes-bcrypt ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-hashes-bcrypt ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-hashes-bcrypt ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 5 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-hashes-bcrypt ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 1 stub.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-hashes-bcrypt ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/crypto/support/hashes/bcrypt/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-hashes-bcrypt ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-hashes-bcrypt ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 1 file.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-hashes-bcrypt ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-hashes-bcrypt ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --------------------< org.apache.shiro:shiro-event >--------------------
+[INFO] Building Apache Shiro :: Event 2.0.0                             [10/16]
+[INFO]   from event/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-event ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/event/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-event ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-event ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-event ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-event ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-event ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-event ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-event ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-event ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-event ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/event/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/event/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-event ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-event ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-event ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-event ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 14 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-event ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 18 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-event ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/event/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-event ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 18 source files with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-event ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 27 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-event ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-event ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-event ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --------------------< org.apache.shiro:shiro-cache >--------------------
+[INFO] Building Apache Shiro :: Cache 2.0.0                             [11/16]
+[INFO]   from cache/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-cache ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/cache/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-cache ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-cache ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-cache ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-cache ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-cache ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-cache ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-cache ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-cache ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-cache ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/cache/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/cache/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-cache ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-cache ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-cache ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-cache ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 8 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-cache ---
+[INFO] No sources specified for stub generation. Skipping.
+[INFO] Generated 0 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-cache ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/cache/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-cache ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-cache ---
+[INFO] No sources specified for compilation. Skipping.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-cache ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-cache ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-cache ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] -------------------< org.apache.shiro:shiro-config >--------------------
+[INFO] Building Apache Shiro :: Configuration 2.0.0                     [12/16]
+[INFO]   from config/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-config ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/config/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-config ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-config ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-config ---
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-config ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-config ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-config ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-config ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-config ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-config ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/config/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/config/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-config ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-config ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-config ---
+[INFO] No sources specified for stub generation. Skipping.
+[INFO] Generated 0 stubs.
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-config ---
+[INFO] No sources specified for compilation. Skipping.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-config ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-config ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] -----------------< org.apache.shiro:shiro-config-core >-----------------
+[INFO] Building Apache Shiro :: Configuration :: Core 2.0.0             [13/16]
+[INFO]   from config/core/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-config-core ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/config/core/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-config-core ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-config-core ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-config-core ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-config-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-config-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-config-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-config-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-config-core ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-config-core ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/config/core/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/config/core/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-config-core ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-config-core ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-config-core ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-config-core ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 4 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-config-core ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 1 stub.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-config-core ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/config/core/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-config-core ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-config-core ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 2 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-config-core ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-config-core ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-config-core ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] -----------------< org.apache.shiro:shiro-config-ogdl >-----------------
+[INFO] Building Apache Shiro :: Configuration :: OGDL 2.0.0             [14/16]
+[INFO]   from config/ogdl/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-config-ogdl ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/config/ogdl/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-config-ogdl ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-config-ogdl ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-config-ogdl ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-config-ogdl ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-config-ogdl ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/config/ogdl/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/config/ogdl/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-config-ogdl ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-config-ogdl ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-config-ogdl ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 13 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-config-ogdl ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 10 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-config-ogdl ---
+[INFO] skip non existing resourceDirectory /root/workspace/projs/code_llm/java_projs/shiro/config/ogdl/src/test/resources
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-config-ogdl ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 11 source files with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-config-ogdl ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 11 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-config-ogdl ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-config-ogdl ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --------------------< org.apache.shiro:shiro-core >---------------------
+[INFO] Building Apache Shiro :: Core 2.0.0                              [15/16]
+[INFO]   from core/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-core ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/core/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-core ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-core ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-core ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-core ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-core ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-core ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/core/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/core/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-core ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-core ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-core ---
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-core ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 236 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-core ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 12 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-core ---
+[INFO] Copying 7 resources from src/test/resources to target/test-classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-core ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 79 source files with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-core ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 19 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-core ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-core ---
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-core ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] ---------------------< org.apache.shiro:shiro-web >---------------------
+[INFO] Building Apache Shiro :: Web 2.0.0                               [16/16]
+[INFO]   from web/pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ shiro-web ---
+[INFO] Deleting /root/workspace/projs/code_llm/java_projs/shiro/web/target
+[INFO] 
+[INFO] --- apache-rat:0.15:check (rat-check) @ shiro-web ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- directory:1.0:directory-of (directories) @ shiro-web ---
+[INFO] Directory of org.apache.shiro:shiro-root set to: /root/workspace/projs/code_llm/java_projs/shiro
+[INFO] 
+[INFO] --- checkstyle:3.3.1:checkstyle (default) @ shiro-web ---
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] Starting audit...
+Audit done.
+[INFO] 
+[INFO] --- buildnumber:3.2.0:create (default) @ shiro-web ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven-version) @ shiro-web ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-java-version) @ shiro-web ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ shiro-web ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce-forbidden-dependencies) @ shiro-web ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ shiro-web ---
+[INFO] jacocoAgent set to -javaagent:/root/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/root/workspace/projs/code_llm/java_projs/shiro/web/target/jacoco.exec,includes=org/apache/shiro/**,excludes=**/*$FastClassBy*$*:**/*$EnhancerBy*CGLIB$*:**/*$MockitoMock$*:**/*$HibernateProxy$*:org/apache/shiro/samples/guice/SampleShiroGuiceBootstrap:org/apache/shiro/samples/guice/SampleShiroServletModule:org/apache/shiro/**/*Test:org/apache/shiro/**/*Test$*:org/apache/shiro/**/*IT:org/apache/shiro/**/*IT$*:org/apache/shiro/**/__EJB31_Generated*:org/apache/shiro/**/Deployments,classdumpdir=/root/workspace/projs/code_llm/java_projs/shiro/web/target/classes-jacoco
+[INFO] 
+[INFO] --- gplus:3.0.2:addTestSources (default) @ shiro-web ---
+[INFO] 
+[INFO] --- remote-resources:3.1.0:process (process-resource-bundles) @ shiro-web ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ shiro-web ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ shiro-web ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 106 source files with javac [debug release 11] to target/classes
+[INFO] 
+[INFO] --- gplus:3.0.2:generateTestStubs (default) @ shiro-web ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform generateTestStubs.
+[INFO] Generated 18 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ shiro-web ---
+[INFO] Copying 3 resources from src/test/resources to target/test-classes
+[INFO] Copying 3 resources from target/maven-shared-archive-resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ shiro-web ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 45 source files with javac [debug release 11] to target/test-classes
+[INFO] 
+[INFO] --- gplus:3.0.2:compileTests (default) @ shiro-web ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 4.0.18 to perform compileTests.
+[INFO] invokedynamic enabled.
+[INFO] Parallel parsing enabled.
+[INFO] Compiled 66 files.
+[INFO] 
+[INFO] --- gplus:3.0.2:removeTestStubs (default) @ shiro-web ---
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ shiro-web ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.shiro.web.env.EnvironmentLoaderServiceTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.621 s -- in org.apache.shiro.web.env.EnvironmentLoaderServiceTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (default-cli) @ shiro-web ---
+[INFO] Loading execution data file /root/workspace/projs/code_llm/java_projs/shiro/web/target/jacoco.exec
+[INFO] Analyzed bundle 'Apache Shiro :: Web' with 85 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Apache Shiro 2.0.0:
+[INFO] 
+[INFO] Apache Shiro ....................................... SUCCESS [  1.135 s]
+[INFO] Apache Shiro :: Lang ............................... SUCCESS [  3.008 s]
+[INFO] Apache Shiro :: Cryptography ....................... SUCCESS [  0.027 s]
+[INFO] Apache Shiro :: Cryptography :: Core ............... SUCCESS [  1.127 s]
+[INFO] Apache Shiro :: Cryptography :: Hashing ............ SUCCESS [  1.919 s]
+[INFO] Apache Shiro :: Cryptography :: Ciphers ............ SUCCESS [  1.731 s]
+[INFO] Apache Shiro :: Cryptography :: Support ............ SUCCESS [  0.027 s]
+[INFO] Apache Shiro :: Cryptography :: Support :: Argon2 .. SUCCESS [  1.314 s]
+[INFO] Apache Shiro :: Cryptography :: Support :: BCrypt .. SUCCESS [  1.240 s]
+[INFO] Apache Shiro :: Event .............................. SUCCESS [  1.358 s]
+[INFO] Apache Shiro :: Cache .............................. SUCCESS [  0.172 s]
+[INFO] Apache Shiro :: Configuration ...................... SUCCESS [  0.020 s]
+[INFO] Apache Shiro :: Configuration :: Core .............. SUCCESS [  1.327 s]
+[INFO] Apache Shiro :: Configuration :: OGDL .............. SUCCESS [  2.102 s]
+[INFO] Apache Shiro :: Core ............................... SUCCESS [  6.472 s]
+[INFO] Apache Shiro :: Web ................................ SUCCESS [  6.270 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  30.051 s
+[INFO] Finished at: 2024-05-08T20:10:53+08:00
+[INFO] ------------------------------------------------------------------------

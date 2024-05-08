@@ -16,7 +16,7 @@ import colorlog
 
 # Create a logger
 logger = colorlog.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 # Create a colored formatter
 formatter = colorlog.ColoredFormatter(
@@ -38,13 +38,17 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 JACOCO_FILE = "target/site/jacoco/jacoco.xml"
-METRIC = "INSTRUCTIONS"
+METRIC = "INSTRUCTION"
 PKG_PREFIX = "org.apache.shiro"
 UT_COV_DIR = "ut_cov_data"
-
 BASE_DIR = os.path.join(sys.path[0], "..")
 
 debug = False
+try_mode = False
+
+sub_projects: list[str] = []
+pom_modules: list[str] = []
+test_methods: list[str] = []
 
 
 @dataclass
@@ -64,6 +68,9 @@ class Location:
 class CovRecord:
     loc: Location
     cov: dict[str, CovRes]
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 
 def collect_subprojects() -> list[str]:
@@ -93,11 +100,14 @@ def extract_cov_report(file_path: str) -> list[CovRecord]:
 
     cov_records = []
     for package in root:
-        assert package.tag == "package"
+        if package.tag != "package":
+            continue
         for classes in package:
-            assert classes.tag == "class"
+            if classes.tag != "class":
+                continue
             for method in classes:
-                assert method.tag == "method"
+                if method.tag != "method":
+                    continue
                 loc = Location(
                     package.attrib.get("name", ""),
                     classes.attrib.get("name", ""),
@@ -119,6 +129,8 @@ def extract_cov_report(file_path: str) -> list[CovRecord]:
 def calculate_coverage(records: list[CovRecord], metric: str) -> float:
     covered = 0
     missed = 0
+    # if debug:
+    #     __import__("ipdb").set_trace()
     for rec in records:
         cov_res = rec.cov.get(metric)
         assert isinstance(cov_res, CovRes)
@@ -127,23 +139,68 @@ def calculate_coverage(records: list[CovRecord], metric: str) -> float:
     return (covered) / (covered + missed)
 
 
-def run_ut(test_method: str):
-    global debug
-    cmd = f"mvn clean test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest='{test_method}'"
-    logger.info(f"command: {cmd}")
-    err_log = "data/cmd_err.log"
+def collect_modules() -> list[str]:
+    file_path = "pom.xml"
+    tree = ET.parse(file_path)
+    root = tree.getroot()
+    namespace = {"maven": "http://maven.apache.org/POM/4.0.0"}
     if debug:
-        proc = subprocess.run(cmd.split(), text=True)
+        __import__("ipdb").set_trace()
+    mods = root.find("./maven:modules", namespace)
+    assert mods is not None
+    pom_modules: list[str] = []
+    for mod in mods:
+        # assert mod.tag == "module"
+        assert mod.text is not None
+        pom_modules.append(mod.text)
+    return pom_modules
+
+
+def get_module(full_path: str) -> str:
+    global debug, pom_modules, try_mode
+    if debug:
+        __import__("ipdb").set_trace()
+    m = re.search(r"/(\w+)/", full_path)
+    assert m is not None
+    module = m.group(1)
+    if module in pom_modules:
+        return module
     else:
-        proc = subprocess.run(
-            cmd.split(), text=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
-        )
+        if debug or try_mode:
+            assert False
+        return ""
+
+
+def run_ut(test_method: str, full_path: str) -> bool:
+    global debug, try_mode
+    # if debug:
+    #     __import__("ipdb").set_trace()
+    # note that the jacoco.skip=false was special extra options for shiro due to its customized project settings
+    err_log = "data/cmd_err.log"
+
+    module = get_module(full_path)
+    if len(module) == 0:
+        return False
+    cmd = f"mvn -pl {module} -am clean test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest={test_method}"
+    logger.info(f"command: {cmd}")
+    if debug or try_mode:
+        proc = subprocess.run(cmd.split(), text=True, capture_output=True)
+    else:
+        proc = subprocess.run(cmd.split(), text=True, capture_output=True)
     ret = proc.returncode
+    if debug:
+        debug_log = "data/run_ut.log"
+        with open(debug_log, "w", encoding="utf-8") as f:
+            f.write(proc.stdout)
+            f.write(proc.stderr)
+        logger.error(f"refer to log file {debug_log}")
     if ret != 0:
         with open(err_log, "w", encoding="utf-8") as f:
             f.write(proc.stdout + proc.stderr)
         logger.error(f"maven command failed: {cmd}")
         logger.error(f"refer to log file {err_log}")
+        return False
+    return True
 
 
 def extract_method_name(method_name: str) -> Location:
@@ -180,20 +237,28 @@ def check_valid_report_dir(report_dir: str, loc: Location) -> bool:
     if not os.path.exists(file_path):
         return False
 
+    package_dir = loc.package.replace(".", "/")
+
     tree = ET.parse(file_path)
     root = tree.getroot()
 
+    # if debug:
+    #     __import__("ipdb").set_trace()
+
     flag = False
     for package in root:
-        assert package.tag == "package"
-        if not package.attrib.get("name", "") == loc.package:
+        if package.tag != "package":
+            continue
+        if not package.attrib.get("name", "") == package_dir:
             continue
         flag = True
+        if debug:
+            logging.info("Find corresponding package in the jacoco report")
         break
     return flag
 
 
-def search_for_report_path(loc: Location, sub_projects: list[str]) -> str:
+def search_for_report_path(loc: Location, full_path: str) -> str:
     """
     sub_project was defined by maven
     part of package name(prefix removed) does not always mapped to the sub project directory path
@@ -201,13 +266,12 @@ def search_for_report_path(loc: Location, sub_projects: list[str]) -> str:
     candidates longest match
     required: contains jacoco report
     """
-    global debug
-    if debug:
-        __import__("ipdb").set_trace()
-    path = get_full_path(loc)
+    global debug, sub_projects
+    # if debug:
+    #     __import__("ipdb").set_trace()
     report_dir = ""
     for dir in sub_projects:
-        if not path.startswith(dir):
+        if not full_path.startswith(dir):
             continue
         if not check_valid_report_dir(dir, loc):
             continue
@@ -220,31 +284,44 @@ def search_for_report_path(loc: Location, sub_projects: list[str]) -> str:
         return ""
 
 
-def get_report_path(test_method: str, sub_projects: list[str]) -> str:
+def get_report(test_method: str) -> str:
     """
     get report xml  for corresponding UT, xml file resides in the corresponding subproject dir plus fixed target sub structure
     UT(method name) -> package -> sub project,
     sub project constitutes part of sub project
     """
+    global sub_projects
     loc = extract_method_name(test_method)
-    report_path = search_for_report_path(loc, sub_projects)
+    full_path = get_full_path(loc)
+    flag = run_ut(test_method, full_path)
+    if not flag:
+        return ""
+    report_path = search_for_report_path(loc, full_path)
     return report_path
 
 
 def persist_cov_data(test_method: str, cov_records: list[CovRecord]):
     if not os.path.exists(UT_COV_DIR):
         os.mkdir(UT_COV_DIR)
-    file_path = os.path.join(UT_COV_DIR, test_method)
+    file_path = os.path.join(UT_COV_DIR, test_method + ".json")
+    if debug:
+        __import__("ipdb").set_trace()
+    json_str = "["
+    for ind, cov_rec in enumerate(cov_records):
+        if ind > 0:
+            json_str += ",\n"
+        json_str += cov_rec.toJSON()
+    json_str += "\n]"
     with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(cov_records, f)
+        f.write(json_str)
 
 
-def run_and_collect_cov(test_method: str, sub_projects: list[str]) -> bool:
+def run_and_collect_cov(test_method: str) -> bool:
     """
     run and then collect data(path needed)
     """
-    run_ut(test_method)
-    report_path = get_report_path(test_method, sub_projects)
+    global sub_projects
+    report_path = get_report(test_method)
     # failed
     if len(report_path) == 0:
         return False
@@ -257,22 +334,38 @@ def run_and_collect_cov(test_method: str, sub_projects: list[str]) -> bool:
 
 
 def main():
-    global debug
+    global debug, try_mode, sub_projects, test_methods, pom_modules
     test_methods = collect_test_methods()
     sub_projects = collect_subprojects()
-    succ = 0
-    for ind, test_method in enumerate(test_methods):
-        logger.info(f"running testmethod {ind+1}: {test_method}")
-        flag = run_and_collect_cov(test_method, sub_projects)
-        if not flag:
-            logger.warning(f"running {ind+1} failed")
-        else:
-            succ += 1
-        print()
+    pom_modules = collect_modules()
 
-        if debug:
-            break
-    logger.info(f"{succ} cases succeed among {len(test_method)} tries.")
+    if try_mode:
+        test_method = (
+            "org.apache.shiro.web.env.EnvironmentLoaderServiceTest#singleServiceTest"
+        )
+        flag = run_and_collect_cov(
+            test_method,
+        )
+        if not flag:
+            logging.error("failed to collect testing UT")
+        else:
+            logging.info("test running succeeded")
+    else:
+        succ = 0
+        for ind, test_method in enumerate(test_methods):
+            logger.info(f"running testmethod {ind+1}: {test_method}")
+            flag = run_and_collect_cov(
+                test_method,
+            )
+            if not flag:
+                logger.warning(f"running {ind+1} failed")
+            else:
+                succ += 1
+                logger.info(f"running {ind + 1} succeeded")
+            print()
+            if debug:
+                break
+        logger.info(f"{succ} cases succeed among {len(test_method)} tries.")
 
 
 if __name__ == "__main__":
@@ -280,7 +373,11 @@ if __name__ == "__main__":
         description="run maven UT-coverage command and collect coverage informartion each"
     )
     parser.add_argument("-d", "--debug", help="debug mode", action="store_true")
+    parser.add_argument(
+        "-t", "--try", help="try sample execution", action="store_true", dest="try_mode"
+    )
     args = parser.parse_args()
 
     debug = args.debug
+    try_mode = args.try_mode
     main()

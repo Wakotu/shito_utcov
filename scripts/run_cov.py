@@ -231,7 +231,7 @@ def get_report_path(test_method: str, sub_projects: list[str]) -> str:
     return report_path
 
 
-def persist_cov_data(test_method: str, cov_records: list[CovRes]):
+def persist_cov_data(test_method: str, cov_records: list[CovRecord]):
     if not os.path.exists(UT_COV_DIR):
         os.mkdir(UT_COV_DIR)
     file_path = os.path.join(UT_COV_DIR, test_method)
@@ -252,6 +252,7 @@ def run_and_collect_cov(test_method: str, sub_projects: list[str]) -> bool:
     logger.info(f"cov_record sample: {cov_records[0]}")
     rate = calculate_coverage(cov_records, METRIC)
     logger.info(f"{METRIC} coverage rate: {rate:.2f}")
+    persist_cov_data(test_method, cov_records)
     return True
 
 

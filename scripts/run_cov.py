@@ -171,12 +171,19 @@ def get_module(full_path: str) -> str:
         return ""
 
 
+def get_err_log_name(test_method: str) -> str:
+    cmd_err_dir = "data/cmd_err"
+    if not os.path.exists(cmd_err_dir):
+        os.makedirs(cmd_err_dir)
+    return os.path.join(cmd_err_dir, test_method + ".log")
+
+
 def run_ut(test_method: str, full_path: str) -> bool:
     global debug, try_mode
     # if debug:
     #     __import__("ipdb").set_trace()
     # note that the jacoco.skip=false was special extra options for shiro due to its customized project settings
-    err_log = "data/cmd_err.log"
+    err_log = get_err_log_name(test_method)
 
     module = get_module(full_path)
     if len(module) == 0:

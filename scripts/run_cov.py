@@ -2,20 +2,28 @@
 run each unit test and collect its coverage information
 """
 
+import argparse
 import json
 import logging
 import os
 import re
 import subprocess
+import sys
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    format="[%(levelname)s] %(asctime)s - %(name)s - %(message)s", level=logging.INFO
+)
 
 JACOCO_FILE = "target/site/jacoco/jacoco.xml"
 METRIC = "INSTRUCTIONS"
 PKG_PREFIX = "org.apache.shiro"
 UT_COV_DIR = "ut_cov_data"
+
+BASE_DIR = os.path.join(sys.path[0], "..")
+
+debug = False
 
 
 @dataclass
@@ -38,7 +46,7 @@ class CovRecord:
 
 
 def collect_subprojects() -> list[str]:
-    filename = "data/report_dir.json"
+    filename = os.path.join(BASE_DIR, "data/report_dir.json")
     with open(filename, "r", encoding="utf-8") as f:
         sub_projects = json.load(f)
     assert isinstance(sub_projects, list)
@@ -47,7 +55,7 @@ def collect_subprojects() -> list[str]:
 
 
 def collect_test_methods() -> list[str]:
-    filename = "data/test_methods.json"
+    filename = os.path.join(BASE_DIR, "data/test_methods.json")
     with open(filename, "r", encoding="utf-8") as f:
         test_methods = json.load(f)
     assert isinstance(test_methods, list)
@@ -99,10 +107,22 @@ def calculate_coverage(records: list[CovRecord], metric: str) -> float:
 
 
 def run_ut(test_method: str):
-    cmd = f"mvn test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest='{test_method}'"
-    proc = subprocess.Popen(cmd, shell=True)
-    ret = proc.wait()
-    assert ret == 0
+    global debug
+    cmd = f"mvn clean test jacoco:report -Drat.skip=true -Dsurefire.failIfNoSpecifiedTests=false -Djacoco.skip=false -Dtest='{test_method}'"
+    logging.info(f"command: {cmd}")
+    err_log = "data/cmd_err.log"
+    if debug:
+        proc = subprocess.run(cmd.split(), text=True)
+    else:
+        proc = subprocess.run(
+            cmd.split(), text=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+        )
+    ret = proc.returncode
+    if ret != 0:
+        with open(err_log, "w", encoding="utf-8") as f:
+            f.write(proc.stdout + proc.stderr)
+        logging.error(f"maven command failed: {cmd}")
+        logging.error(f"refer to log file {err_log}")
 
 
 def extract_method_name(method_name: str) -> Location:
@@ -134,9 +154,10 @@ def get_full_path(loc: Location) -> str:
     assert False
 
 
-def check_valid_report_dir(report_dir: str, loc: Location):
+def check_valid_report_dir(report_dir: str, loc: Location) -> bool:
     file_path = os.path.join(report_dir, JACOCO_FILE)
-    assert os.path.exists(file_path)
+    if not os.path.exists(file_path):
+        return False
 
     tree = ET.parse(file_path)
     root = tree.getroot()
@@ -148,7 +169,7 @@ def check_valid_report_dir(report_dir: str, loc: Location):
             continue
         flag = True
         break
-    assert flag
+    return flag
 
 
 def search_for_report_path(loc: Location, sub_projects: list[str]) -> str:
@@ -159,16 +180,23 @@ def search_for_report_path(loc: Location, sub_projects: list[str]) -> str:
     candidates longest match
     required: contains jacoco report
     """
+    global debug
+    if debug:
+        __import__("ipdb").set_trace()
     path = get_full_path(loc)
     report_dir = ""
     for dir in sub_projects:
         if not path.startswith(dir):
             continue
-        check_valid_report_dir(dir, loc)
+        if not check_valid_report_dir(dir, loc):
+            continue
         if len(dir) > len(report_dir):
             report_dir = dir
 
-    return os.path.join(report_dir, JACOCO_FILE)
+    if len(report_dir) != 0:
+        return os.path.join(report_dir, JACOCO_FILE)
+    else:
+        return ""
 
 
 def get_report_path(test_method: str, sub_projects: list[str]) -> str:
@@ -190,24 +218,47 @@ def persist_cov_data(test_method: str, cov_records: list[CovRes]):
         json.dump(cov_records, f)
 
 
-def run_and_collect_cov(test_method: str, sub_projects: list[str]) -> None:
+def run_and_collect_cov(test_method: str, sub_projects: list[str]) -> bool:
     """
     run and then collect data(path needed)
     """
     run_ut(test_method)
     report_path = get_report_path(test_method, sub_projects)
+    # failed
+    if len(report_path) == 0:
+        return False
     cov_records = extract_cov_report(report_path)
     logging.info(f"cov_record sample: {cov_records[0]}")
     rate = calculate_coverage(cov_records, METRIC)
     logging.info(f"{METRIC} coverage rate: {rate:.2f}")
+    return True
 
 
 def main():
+    global debug
     test_methods = collect_test_methods()
     sub_projects = collect_subprojects()
-    for test_method in test_methods:
-        run_and_collect_cov(test_method, sub_projects)
+    succ = 0
+    for ind, test_method in enumerate(test_methods):
+        logging.info(f"running testmethod {ind+1}: {test_method}")
+        flag = run_and_collect_cov(test_method, sub_projects)
+        if not flag:
+            logging.warning(f"running {ind+1} failed")
+        else:
+            succ += 1
+        print()
+
+        if debug:
+            break
+    logging.info(f"{succ} cases succeed among {len(test_method)} tries.")
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="run maven UT-coverage command and collect coverage informartion each"
+    )
+    parser.add_argument("-d", "--debug", help="debug mode", action="store_true")
+    args = parser.parse_args()
+
+    debug = args.debug
     main()

@@ -20,7 +20,7 @@ logger.setLevel(logging.INFO)
 
 # Create a colored formatter
 formatter = colorlog.ColoredFormatter(
-    "%(log_color)s[%(levelname)s] - %(asctime)s - %(message)s",
+    "%(log_color)s[%(levelname)s] %(reset)s- %(asctime)s - %(message)s",
     log_colors={
         "DEBUG": "cyan",
         "INFO": "green",
@@ -353,6 +353,9 @@ def main():
     test_methods = collect_test_methods()
     sub_projects = collect_subprojects()
     pom_modules = collect_modules()
+
+    if debug:
+        __import__("ipdb").set_trace()
 
     if try_mode:
         test_method = (

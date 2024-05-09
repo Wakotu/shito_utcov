@@ -55,3 +55,4 @@ pom.xml.*
 
 #custom
 ut_cov_data/
+venv/

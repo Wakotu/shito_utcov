@@ -54,4 +54,5 @@ pom.xml.*
 .sdkmanrc
 
 #custom
-ut_cov_data/
+/ut_cov_data/
+/scripts/

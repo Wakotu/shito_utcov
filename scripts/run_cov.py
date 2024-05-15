@@ -14,6 +14,21 @@ from dataclasses import dataclass
 
 import colorlog
 
+JACOCO_FILE = "target/site/jacoco/jacoco.xml"
+METRIC = "INSTRUCTION"
+PKG_PREFIX = "org.apache.shiro"
+UT_COV_DIR = "ut_cov_data"
+BASE_DIR = os.path.join(sys.path[0], "..")
+DATA_DIR = "data"
+
+debug = False
+try_mode = False
+multi_module_mode = False
+
+sub_projects: list[str] = []
+pom_modules: list[str] = []
+test_methods: list[str] = []
+
 # Create a logger
 logger = colorlog.getLogger()
 logger.setLevel(logging.INFO)
@@ -36,19 +51,6 @@ handler.setFormatter(formatter)
 
 # Add the handler to the logger
 logger.addHandler(handler)
-
-JACOCO_FILE = "target/site/jacoco/jacoco.xml"
-METRIC = "INSTRUCTION"
-PKG_PREFIX = "org.apache.shiro"
-UT_COV_DIR = "ut_cov_data"
-BASE_DIR = os.path.join(sys.path[0], "..")
-
-debug = False
-try_mode = False
-
-sub_projects: list[str] = []
-pom_modules: list[str] = []
-test_methods: list[str] = []
 
 
 @dataclass
@@ -73,8 +75,26 @@ class CovRecord:
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 
+def prepare_subprojects():
+    cmd = 'mvn -q --also-make exec:exec -Dexec.executable="pwd" -Dmaven.clean.failOnError=false'
+    filename = "data/report_dir.json"
+    root = os.getcwd()
+    proc = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    # strip the command output
+    lines = proc.stdout.split("\n")
+    pat = re.compile(r"\[ERROR\]")
+    sub_projects = [line for line in lines if not pat.match(line) and len(line) > 0]
+    sub_projects = [dir.replace(root, ".") for dir in sub_projects]
+    sub_projects.sort()
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(sub_projects, f)
+
+
 def collect_subprojects() -> list[str]:
-    filename = os.path.join(BASE_DIR, "data/report_dir.json")
+    # get from mvn commands
+    filename = os.path.join(BASE_DIR, DATA_DIR, "report_dir.json")
+    if not os.path.exists(filename):
+        prepare_subprojects()
     with open(filename, "r", encoding="utf-8") as f:
         sub_projects = json.load(f)
     assert isinstance(sub_projects, list)
@@ -83,7 +103,7 @@ def collect_subprojects() -> list[str]:
 
 
 def collect_test_methods() -> list[str]:
-    filename = os.path.join(BASE_DIR, "data/test_methods.json")
+    filename = os.path.join(BASE_DIR, DATA_DIR, "test_methods.json")
     with open(filename, "r", encoding="utf-8") as f:
         test_methods = json.load(f)
     assert isinstance(test_methods, list)
@@ -140,6 +160,7 @@ def calculate_coverage(records: list[CovRecord], metric: str) -> float:
 
 
 def collect_modules() -> list[str]:
+    global multi_module_mode
     file_path = "pom.xml"
     tree = ET.parse(file_path)
     root = tree.getroot()
@@ -147,7 +168,10 @@ def collect_modules() -> list[str]:
     if debug:
         __import__("ipdb").set_trace()
     mods = root.find("./maven:modules", namespace)
-    assert mods is not None
+    if mods is None:
+        multi_module_mode = False
+        return []
+    multi_module_mode = True
     pom_modules: list[str] = []
     for mod in mods:
         # assert mod.tag == "module"
@@ -166,19 +190,17 @@ def get_module(full_path: str) -> str:
     if module in pom_modules:
         return module
     else:
-        if debug or try_mode:
-            assert False
         return ""
 
 
 def get_err_log_name(test_method: str) -> str:
-    cmd_err_dir = "data/cmd_err"
+    cmd_err_dir = os.path.join(BASE_DIR, DATA_DIR, "cmd_err")
     if not os.path.exists(cmd_err_dir):
         os.makedirs(cmd_err_dir)
     return os.path.join(cmd_err_dir, test_method + ".log")
 
 
-def run_ut(test_method: str, full_path: str, single: bool) -> bool:
+def run_ut(test_method: str, full_path: str, sub: bool) -> bool:
     global debug, try_mode
     # if debug:
     #     __import__("ipdb").set_trace()
@@ -186,7 +208,7 @@ def run_ut(test_method: str, full_path: str, single: bool) -> bool:
     err_log = get_err_log_name(test_method)
 
     # construct cmd within different mode
-    if single:
+    if sub:
         module = get_module(full_path)
         if len(module) == 0:
             return False
@@ -202,7 +224,7 @@ def run_ut(test_method: str, full_path: str, single: bool) -> bool:
         proc = subprocess.run(cmd.split(), text=True, capture_output=True)
     ret = proc.returncode
     if debug:
-        debug_log = "data/run_ut.log"
+        debug_log = os.path.join(DATA_DIR, "run_ut.log")
         with open(debug_log, "w", encoding="utf-8") as f:
             f.write(proc.stdout)
             f.write(proc.stderr)
@@ -297,7 +319,7 @@ def search_for_report_path(loc: Location, full_path: str) -> str:
         return ""
 
 
-def get_report(test_method: str, single: bool) -> str:
+def get_report(test_method: str, sub: bool) -> str:
     """
     get report xml  for corresponding UT, xml file resides in the corresponding subproject dir plus fixed target sub structure
     UT(method name) -> package -> sub project,
@@ -306,7 +328,7 @@ def get_report(test_method: str, single: bool) -> str:
     global sub_projects
     loc = extract_method_name(test_method)
     full_path = get_full_path(loc)
-    flag = run_ut(test_method, full_path, single)
+    flag = run_ut(test_method, full_path, sub)
     if not flag:
         return ""
     report_path = search_for_report_path(loc, full_path)
@@ -332,10 +354,16 @@ def persist_cov_data(test_method: str, cov_records: list[CovRecord]):
 def run_and_collect_cov(test_method: str) -> bool:
     """
     run and then collect data(path needed)
+    returns whether succeed
     """
-    global sub_projects
-    report_path = get_report(test_method, True)
-    if len(report_path) == 0:
+    global sub_projects, multi_module_mode
+    if multi_module_mode:
+        report_path = get_report(test_method, True)
+        if len(report_path) == 0:
+            report_path = get_report(test_method, False)
+            if len(report_path) == 0:
+                return False
+    else:
         report_path = get_report(test_method, False)
         if len(report_path) == 0:
             return False
@@ -348,8 +376,18 @@ def run_and_collect_cov(test_method: str) -> bool:
     return True
 
 
+def prepare_dir(dir: str):
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+
+def prepare_dirs():
+    prepare_dir(os.path.join(BASE_DIR, DATA_DIR))
+
+
 def main():
     global debug, try_mode, sub_projects, test_methods, pom_modules
+    prepare_dirs()
     test_methods = collect_test_methods()
     sub_projects = collect_subprojects()
     pom_modules = collect_modules()

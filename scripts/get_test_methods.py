@@ -11,6 +11,8 @@ logging.basicConfig(level=logging.INFO)
 need to run `mvn surefire-report:report` at first
 """
 
+format_mode = False
+
 
 def test_method_name_strip(method_name: str) -> str:
     pat = r"\([\w\s,]+\)\[\d+\]$"
@@ -20,7 +22,7 @@ def test_method_name_strip(method_name: str) -> str:
     return new_name
 
 
-def get_test_methods(report_dir: str) -> list[str]:
+def collect_reported_methods(report_dir: str) -> list[str]:
     test_methods = set()
     for file_name in os.listdir(report_dir):
         if file_name.endswith(".xml"):
@@ -64,21 +66,31 @@ def get_all_report_dirs() -> list[str]:
 
 
 def persist(test_methods: list[str]):
-    filename = "test_methods.json"
+    filename = "data/test_methods.json"
+    dir = os.path.dirname(filename)
+    if not os.path.exists(dir):
+        os.mkdir(dir)
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(test_methods, f, indent=4)
 
 
-def main():
+def get_test_methods() -> list[str]:
+    if format_mode:
+        filename = "data/test_methods.json"
+        if os.path.exists(filename):
+            with open(filename, "r", encoding="utf-8") as f:
+                return json.load(f)
+
+    prepare_maven()
     test_methods: list[str] = []
-    # for modu in MODULES:
-    #     mod_dir = convert_module_dir(modu)
-    #     assert os.path.exists(mod_dir)
-    #     test_methods.extend(get_test_mothods_per_module(mod_dir))
-
     for dir in get_all_report_dirs():
-        test_methods.extend(get_test_methods(dir))
+        test_methods.extend(collect_reported_methods(dir))
+    return test_methods
 
+
+def main():
+    test_methods = get_test_methods()
+    test_methods.sort()
     persist(test_methods)
     # print(test_methods)
 
@@ -95,6 +107,21 @@ def prepare_maven():
     logging.info("run `mvn surefire-report:report` at first")
 
 
+def parse_args():
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Get test methods from surefire-reports"
+    )
+    parser.add_argument(
+        "-f", "--format", action="store_true", help="format the existing unit tests"
+    )
+    args = parser.parse_args()
+
+    global format_mode
+    format_mode = args.format
+
+
 if __name__ == "__main__":
-    prepare_maven()
+    parse_args()
     main()
